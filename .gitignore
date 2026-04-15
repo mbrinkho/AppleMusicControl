@@ -1,0 +1,15 @@
+# Built installer
+AppleMusicControl.pkg
+
+# Build artifacts
+.pkg-build/
+
+# macOS
+.DS_Store
+
+# Logs
+*.log
+
+# Node (legacy)
+node_modules/
+package-lock.json
