@@ -11,12 +11,13 @@
   body {
     min-height: 100vh;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
     font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", sans-serif;
     background: #0a0a0a;
     color: #fff;
-    overflow: hidden;
+    overflow-x: hidden;
+    padding: 24px 16px;
   }
 
   /* ── Ambient background blur from artwork ───────────────────── */
@@ -35,6 +36,7 @@
     position: relative;
     z-index: 1;
     width: 520px;
+    margin: auto;
     background: rgba(255,255,255,0.08);
     backdrop-filter: blur(40px) saturate(1.8);
     -webkit-backdrop-filter: blur(40px) saturate(1.8);
