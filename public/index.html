@@ -20,6 +20,16 @@
     padding: 24px 16px;
   }
 
+  @media (max-width: 420px) {
+    body { padding: 12px 10px; }
+    .card { padding: 20px 16px 18px; border-radius: 20px; }
+    .artwork-wrap { margin-bottom: 18px; border-radius: 12px; }
+    .track-name { font-size: 15px; }
+    .track-artist { font-size: 13px; }
+    .ctrl-btn.play-pause { width: 50px; height: 50px; }
+    .ctrl-btn.play-pause svg { width: 22px; height: 22px; }
+  }
+
   /* ── Ambient background blur from artwork ───────────────────── */
   #bg-blur {
     position: fixed;
@@ -35,7 +45,7 @@
   .card {
     position: relative;
     z-index: 1;
-    width: 520px;
+    width: min(520px, 100%);
     margin: auto;
     background: rgba(255,255,255,0.08);
     backdrop-filter: blur(40px) saturate(1.8);
@@ -243,7 +253,7 @@
     position: fixed;
     left: 50%;
     top: 50%;
-    width: 520px;
+    width: min(520px, calc(100vw - 32px));
     max-height: 80vh;
     display: flex;
     flex-direction: column;
@@ -532,10 +542,13 @@ async function api(endpoint, body) {
 
 async function poll() {
   try {
-    const r = await fetch('/api/now-playing');
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), 4000);
+    const r = await fetch('/api/now-playing', { signal: controller.signal });
+    clearTimeout(timer);
     const data = await r.json();
     applyState(data);
-  } catch { /* server not ready */ }
+  } catch { /* server not ready or timed out */ }
 }
 
 // ── Apply state to UI ──────────────────────────────────────────

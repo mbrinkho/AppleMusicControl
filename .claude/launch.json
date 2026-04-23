@@ -1,0 +1,17 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "Apple Music Control (Python)",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["/tmp/apple-music-control/server.py"],
+      "port": 3000
+    },
+    {
+      "name": "Apple Music Control (Node)",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["start"],
+      "port": 3000
+    }
+  ]
+}
